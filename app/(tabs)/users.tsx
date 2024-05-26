@@ -35,7 +35,7 @@ export default function TabTwoScreen() {
     const responseJson = await result.json();
 
     const usersResults = responseJson.results as User[];
-
+    console.log('pageNumber', page);
     setUsers(oldUsers =>
       page === 1 ? usersResults : [...oldUsers, ...usersResults],
     );
@@ -45,7 +45,7 @@ export default function TabTwoScreen() {
     void (async () => {
       await getUsers(pageToGet);
     })();
-  }, []);
+  }, [pageToGet]);
 
   return (
     <ParallaxScrollView
@@ -105,7 +105,7 @@ export default function TabTwoScreen() {
       <TouchableOpacity
         style={styles.loadMore}
         onPress={() => {
-          setPageToGet(v => v + 1);
+          setPageToGet(oldPageValue => oldPageValue + 1);
         }}
       >
         <Text style={{ color: 'white', textAlign: 'center' }}>Load More</Text>
