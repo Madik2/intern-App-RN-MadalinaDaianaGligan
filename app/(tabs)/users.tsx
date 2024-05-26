@@ -46,10 +46,12 @@ export default function TabTwoScreen() {
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#a4c991', dark: '#a4c991' }}
       headerImage={
-        <Image
-          source={require('@/assets/images/logo.webp')}
-          style={styles.logo}
-        />
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('@/assets/images/logo.webp')}
+            style={styles.logo}
+          />
+        </View>
       }
     >
       <ThemedView style={styles.titleContainer}>
@@ -105,12 +107,17 @@ export default function TabTwoScreen() {
 }
 
 const styles = StyleSheet.create({
+  logoContainer: {
+    width: '100%',
+    height: 90, // Adjust height as needed
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 5,
+  },
   logo: {
+    width: '100%',
     height: '100%',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    position: 'absolute',
+    resizeMode: 'contain', // or 'cover' depending on your requirement
   },
   headerImage: {
     color: '#808080',

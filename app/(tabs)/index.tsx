@@ -1,4 +1,4 @@
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -10,10 +10,12 @@ export default function HomeScreen() {
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#a4c991', dark: '#a4c991' }}
       headerImage={
-        <Image
-          source={require('@/assets/images/logo.webp')}
-          style={styles.logo}
-        />
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('@/assets/images/logo.webp')}
+            style={styles.logo}
+          />
+        </View>
       }
     >
       <ThemedView style={styles.titleContainer}>
@@ -35,11 +37,16 @@ const styles = StyleSheet.create({
     gap: 8,
     marginBottom: 8,
   },
+  logoContainer: {
+    width: '100%',
+    height: 90,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 5,
+  },
   logo: {
+    width: '100%',
     height: '100%',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    position: 'absolute',
+    resizeMode: 'contain',
   },
 });
