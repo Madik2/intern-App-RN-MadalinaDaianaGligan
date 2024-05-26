@@ -32,7 +32,9 @@ export default function TabTwoScreen() {
     const result = await fetch(
       `${currentEnvironment.api.baseUrl}?results=5&gender=female&page=${String(page)}`,
     );
-    const usersResults = (await result.json()) as User[];
+    const responseJson = await result.json();
+
+    const usersResults = responseJson.results as User[];
 
     setUsers(oldUsers =>
       page === 1 ? usersResults : [...oldUsers, ...usersResults],
@@ -95,8 +97,8 @@ export default function TabTwoScreen() {
       </View>
       {users.length > 0
         ? users.map((user: User) => (
-            <Text key={user.login.uuid} style={{ color: 'white' }}>
-              {user.name.first} {user.name.last} {user.gender}{' '}
+            <Text key={user.login.uuid} style={{ color: 'black' }}>
+              {user.name.first} {user.name.last} {user.gender}
             </Text>
           ))
         : null}
