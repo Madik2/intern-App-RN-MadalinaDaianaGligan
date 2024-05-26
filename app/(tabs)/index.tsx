@@ -4,11 +4,17 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function HomeScreen() {
+  const headerBackgroundColor = useThemeColor({}, 'tint');
+
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#a4c991', dark: '#a4c991' }}
+      headerBackgroundColor={{
+        light: headerBackgroundColor,
+        dark: headerBackgroundColor,
+      }}
       headerImage={
         <View style={styles.logoContainer}>
           <Image

@@ -6,6 +6,7 @@ import { ThemedView } from '@/components/ThemedView';
 import currentEnvironment from '@/constants/environment';
 import { useEffect, useState } from 'react';
 import Checkbox from 'expo-checkbox';
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 type Gender = 'female' | 'male' | '';
 
@@ -21,6 +22,8 @@ type User = {
 };
 
 export default function TabTwoScreen() {
+  const headerBackgroundColor = useThemeColor({}, 'tint');
+
   const [users, setUsers] = useState<User[]>([]);
   const [gender, setGender] = useState<Gender>('');
   const [pageToGet, setPageToGet] = useState<number>(1);
@@ -44,7 +47,10 @@ export default function TabTwoScreen() {
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#a4c991', dark: '#a4c991' }}
+      headerBackgroundColor={{
+        light: headerBackgroundColor,
+        dark: headerBackgroundColor,
+      }}
       headerImage={
         <View style={styles.logoContainer}>
           <Image
@@ -109,7 +115,7 @@ export default function TabTwoScreen() {
 const styles = StyleSheet.create({
   logoContainer: {
     width: '100%',
-    height: 90, // Adjust height as needed
+    height: 90,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 5,
@@ -117,7 +123,7 @@ const styles = StyleSheet.create({
   logo: {
     width: '100%',
     height: '100%',
-    resizeMode: 'contain', // or 'cover' depending on your requirement
+    resizeMode: 'contain',
   },
   headerImage: {
     color: '#808080',
@@ -129,7 +135,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
-  loadMoree: {
+  loadMore: {
     backgroundColor: 'black',
     padding: 14,
     borderRadius: 6,
